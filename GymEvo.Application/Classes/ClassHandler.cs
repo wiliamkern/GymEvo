@@ -55,6 +55,8 @@ namespace GymEvo.Application.Classes
 
             var result = await _uow.ClassRepository.CreateAsync(_mapper.Map<Class>(classDto));
 
+            classDto.ClassId = result.ClassId; // seta o novo id da turma
+
             _ = UpsertCustomersAsync(classDto);
             _ = UpsertExercisesAsync(classDto);
 
@@ -88,7 +90,10 @@ namespace GymEvo.Application.Classes
             await _uow.ClassCustomerRepository.Delete(classDto.ClassId ?? 0);
 
             foreach (ClassCustomerDto row in classDto.Customers)
+            {
+                row.ClassId = classDto.ClassId;
                 _ = _uow.ClassCustomerRepository.CreateAsync(_mapper.Map<ClassCustomer>(row));
+            }
         }
 
         // Remove todos os exercicios e reinsere eles de acordo com retorno do front
@@ -97,7 +102,10 @@ namespace GymEvo.Application.Classes
             await _uow.ClassExerciseRepository.Delete(classDto.ClassId ?? 0);
 
             foreach (ClassExerciseDto row in classDto.Exercises)
+            {
+                row.ClassId = classDto.ClassId;
                 _ = _uow.ClassExerciseRepository.CreateAsync(_mapper.Map<ClassExercise>(row));
+            }
         }
 
         public async Task<bool> Delete(int Id)
