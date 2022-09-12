@@ -1,20 +1,73 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using GymEvo.Application.Customers;
+using GymEvo.Application.DTOs;
+using GymEvo.Application.Instructors;
+using Microsoft.AspNetCore.Mvc;
 
 namespace GymEvo.WebApi.Controllers
 {
     [ApiController]
     public class InstructorController : ControllerBase
     {
-        [HttpGet]
-        [Route("Instructor/get")]
-        public IActionResult Get(Guid id)
+        private readonly InstructorHandler _handler;
+
+        public InstructorController(InstructorHandler handler)
         {
-            /* var token = await _handler.GetById(id);
+            _handler = handler;
+        }
 
-             if (_notification.HasNotification())
-                 return BadRequest(new BadRequestDto(_notification));
+        [HttpPost]
+        [Route("Instructor/Create")]
+        public async Task<IActionResult> Insert(InstructorDto dto)
+        {
+            var token = await _handler.Insert(dto);
 
-             return Ok(new OkDto<CompanyDto>(token));*/
+            if (!token)
+                return BadRequest();
+
+            return Ok();
+        }
+
+        [HttpGet]
+        [Route("Instructor/Get")]
+        public async Task<IActionResult> Get(int Id)
+        {
+            var token = await _handler.Get(Id);
+
+            if (!token.InstructorId.HasValue)
+                return BadRequest();
+
+            return Ok(token);
+        }
+
+        [HttpGet]
+        [Route("Instructor/GetAll")]
+        public async Task<IActionResult> GetAll()
+        {
+            var list = await _handler.GetAll();
+
+            return Ok(new List<InstructorDto>(list));
+        }
+
+        [HttpPatch]
+        [Route("Instructor/Edit")]
+        public async Task<IActionResult> Update(InstructorDto dto)
+        {
+            var token = await _handler.Update(dto);
+
+            if (!token)
+                return BadRequest();
+
+            return Ok();
+        }
+
+        [HttpDelete]
+        [Route("Instructor/Delete")]
+        public async Task<IActionResult> Delete(int Id)
+        {
+            var token = await _handler.Delete(Id);
+
+            if (!token)
+                return BadRequest();
 
             return Ok();
         }

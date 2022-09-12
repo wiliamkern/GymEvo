@@ -38,7 +38,7 @@ namespace GymEvo.Application.Customers
 
         public async Task<CustomerDto> Get(int Id)
         {
-            var customer = await _uow.CustomerRepository.Find(x => x.IsActive && x.Id == Id)
+            var customer = await _uow.CustomerRepository.Find(x => x.IsActive && x.CustomerId == Id)
                 .ProjectTo<CustomerDto>(_mapper.ConfigurationProvider)
                 .FirstOrDefaultAsync();
 
@@ -53,16 +53,13 @@ namespace GymEvo.Application.Customers
 
             await _uow.Save();
 
-            if (string.IsNullOrEmpty(result.Id.ToString()))
-                return false;
-            else
-                return true;
+            return string.IsNullOrEmpty(result.CustomerId.ToString());
         }
 
         public async Task<bool> Update(CustomerDto customerDto)
         {
             var customer = await _uow.CustomerRepository
-                                            .Find(x => x.Id == customerDto.Id)
+                                            .Find(x => x.CustomerId == customerDto.CustomerId)
                                             .FirstOrDefaultAsync();
 
             if (customer == null)
@@ -72,16 +69,13 @@ namespace GymEvo.Application.Customers
 
             await _uow.Save();
 
-            if (string.IsNullOrEmpty(result.Id.ToString()))
-                return false;
-            else
-                return true;
+            return string.IsNullOrEmpty(result.CustomerId.ToString());
         }
 
         public async Task<bool> Delete(int Id)
         {
             var customer = await _uow.CustomerRepository
-                                            .Find(x => x.Id == Id)
+                                            .Find(x => x.CustomerId == Id)
                                             .FirstOrDefaultAsync();
 
             if (customer == null)
@@ -91,10 +85,7 @@ namespace GymEvo.Application.Customers
 
             await _uow.Save();
 
-            if (string.IsNullOrEmpty(result.Id.ToString()))
-                return false;
-            else
-                return true;
+            return string.IsNullOrEmpty(result.Id.ToString());
         }
     }
 }

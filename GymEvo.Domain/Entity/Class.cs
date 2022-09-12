@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace GymEvo.Domain.Entity
 {
-    public class Class : Base
+    public class Class
     {
+        public int ClassId { get; set; }
         public string Description { get; set; }
         public DateTime? ClassStartDate { get; set; }
         public DateTime? ClassEndDate { get; set; }
@@ -17,7 +19,11 @@ namespace GymEvo.Domain.Entity
         public DateTime Updated { get; set; }
         public string UpdatedBy { get; set; }
 
-        public List<Exercise> ExerciseList { get; set; } = new List<Exercise>();
-        public List<Customer> CustomerList { get; set; } = new List<Customer>();
+        public int InstructorId { get; set; }
+        [ForeignKey("InstructorId")]
+        public virtual Instructor Instructor { get; set; }
+
+        public List<ClassExercise> Exercises { get; set; }
+        public List<ClassCustomer> Customers { get; set; }
     }
 }

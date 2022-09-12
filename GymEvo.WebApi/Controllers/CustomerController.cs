@@ -32,7 +32,7 @@ namespace GymEvo.WebApi.Controllers
         {
             var token = await _handler.Get(Id);
 
-            if (!token.Id.HasValue)
+            if (!token.CustomerId.HasValue)
                 return BadRequest();
 
             return Ok(token);

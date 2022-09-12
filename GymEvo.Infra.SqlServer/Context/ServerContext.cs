@@ -22,6 +22,10 @@ namespace GymEvo.Infra.SqlServer.Context
 
             builder.ApplyConfiguration(new CustomerConfiguration());
             builder.ApplyConfiguration(new InstructorConfiguration());
+            builder.ApplyConfiguration(new ExerciseConfiguration());
+            builder.ApplyConfiguration(new ClassConfiguration());
+            builder.ApplyConfiguration(new ClassCustomerConfiguration());
+            builder.ApplyConfiguration(new ClassExerciseConfiguration());
         }
 
         public async Task<int> SaveChangesAsync() => await base.SaveChangesAsync();

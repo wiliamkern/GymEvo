@@ -20,11 +20,19 @@ namespace GymEvo.Infra.Repositories.Repositories
 
             CustomerRepository = new Repository<Customer>(context);
             InstructorRepository = new Repository<Instructor>(context);
+            ExerciseRepository = new Repository<Exercise>(context);
+            ClassRepository = new Repository<Class>(context);
+            ClassCustomerRepository = new Repository<ClassCustomer>(context);
+            ClassExerciseRepository = new Repository<ClassExercise>(context);
+
         }
 
         public IRepository<Customer> CustomerRepository { get; }
-
         public IRepository<Instructor> InstructorRepository { get; }
+        public IRepository<Exercise> ExerciseRepository { get; }
+        public IRepository<Class> ClassRepository { get; }
+        public IRepository<ClassCustomer> ClassCustomerRepository { get; }
+        public IRepository<ClassExercise> ClassExerciseRepository { get; }
 
 
         public async Task Save()

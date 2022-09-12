@@ -17,6 +17,8 @@ namespace GymEvo.Domain.Mapper.MappingProfile
             CreateMap<Instructor, InstructorDto>();
             CreateMap<Class, ClassDto>();
             CreateMap<Exercise, ExerciseDto>();
+            CreateMap<ClassExercise, ClassExerciseDto>();
+            CreateMap<ClassCustomer, ClassCustomerDto>();
         }
     }
 }

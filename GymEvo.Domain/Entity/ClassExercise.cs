@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace GymEvo.Domain.Entity
 {
-    public class ClassCustomer
+    public class ClassExercise
     {
         public int ClassId { get; set; }
-        public int CustomerId { get; set; }
+        public int ExerciseId { get; set; }
         public bool IsActive { get; set; }
         public DateTime Created { get; set; }
         public string CreatedBy { get; set; }

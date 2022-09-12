@@ -2,8 +2,9 @@
 
 namespace GymEvo.Domain.Entity
 {
-    public class Instructor : Base
+    public class Instructor
     {
+        public int InstructorId { get; set; }
         public string Name { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }

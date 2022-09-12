@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace GymEvo.Domain.Entity
 {
-    public class Exercise : Base
+    public class Exercise
     {
+        public int ExerciseId { get; set; }
         public string Description { get; set; }
         public bool IsActive { get; set; }
         public DateTime Created { get; set; }

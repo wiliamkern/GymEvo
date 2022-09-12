@@ -4,7 +4,7 @@ namespace GymEvo.Application.DTOs
 {
     public class InstructorDto
     {
-        public int? Id { get; set; } 
+        public int? InstructorId { get; set; } 
         public string Name { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }

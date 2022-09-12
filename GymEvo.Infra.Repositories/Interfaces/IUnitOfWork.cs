@@ -11,6 +11,10 @@ namespace GymEvo.Infra.Repositories.Interfaces
     {
         IRepository<Customer> CustomerRepository { get; }
         IRepository<Instructor> InstructorRepository { get; }
+        IRepository<Exercise> ExerciseRepository { get; }
+        IRepository<Class> ClassRepository { get; }
+        IRepository<ClassCustomer> ClassCustomerRepository { get; }
+        IRepository<ClassExercise> ClassExerciseRepository { get; }
 
         Task Save();
     }

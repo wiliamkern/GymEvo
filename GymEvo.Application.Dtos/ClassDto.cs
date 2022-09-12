@@ -8,7 +8,7 @@ namespace GymEvo.Application.DTOs
 {
     public class ClassDto
     {
-        public int? Id { get; set; }
+        public int? ClassId { get; set; }
         public string Description { get; set; }
         public DateTime? ClassStartDate { get; set; }
         public DateTime? ClassEndDate { get; set; }
@@ -18,7 +18,8 @@ namespace GymEvo.Application.DTOs
         public DateTime Updated { get; set; }
         public string UpdatedBy { get; set; }
 
-        public List<ExerciseDto> ExerciseList { get; set; } = new List<ExerciseDto>();
-        public List<CustomerDto> CustomerList { get; set; } = new List<CustomerDto>();
+        public int? InstructorId { get; set; }
+        public List<ClassExerciseDto> Exercises { get; set; } = new List<ClassExerciseDto>();
+        public List<ClassCustomerDto> Customers { get; set; } = new List<ClassCustomerDto>();
     }
 }

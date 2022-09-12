@@ -20,8 +20,7 @@ namespace GymEvo.Infra.SqlServer.ModelBuilders
         private static void Relationships(EntityTypeBuilder<Class> builder)
         {
             builder
-                .HasKey(key => key.Id)
-                .;
+                .HasKey(key => key.ClassId);
         }
 
         private static void Ignores(EntityTypeBuilder<Class> builder)

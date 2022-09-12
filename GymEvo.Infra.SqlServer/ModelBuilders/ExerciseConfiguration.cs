@@ -9,20 +9,20 @@ using System.Threading.Tasks;
 
 namespace GymEvo.Infra.SqlServer.ModelBuilders
 {
-    public class CustomerConfiguration : IEntityTypeConfiguration<Customer>
+    public class ExerciseConfiguration : IEntityTypeConfiguration<Exercise>
     {
-        public void Configure(EntityTypeBuilder<Customer> builder)
+        public void Configure(EntityTypeBuilder<Exercise> builder)
         {
             Ignores(builder);
             Relationships(builder);
         }
 
-        private static void Relationships(EntityTypeBuilder<Customer> builder)
+        private static void Relationships(EntityTypeBuilder<Exercise> builder)
         {
-            builder.HasKey(key => key.CustomerId);
+            builder.HasKey(key => key.ExerciseId);
         }
 
-        private static void Ignores(EntityTypeBuilder<Customer> builder)
+        private static void Ignores(EntityTypeBuilder<Exercise> builder)
         {
         }
     }
