@@ -49,7 +49,7 @@ namespace GymEvo.WebApi.Controllers
 
         [HttpPatch]
         [Route("Customer/Edit")]
-        public async Task<IActionResult> Update(CustomerDto dto)
+        public async Task<IActionResult> Update([FromBody] CustomerDto dto)
         {
             var token = await _handler.Update(dto);
 

@@ -12,6 +12,8 @@ namespace GymEvo.Application.DTOs
         public string LastName { get; set; }
         public string Email { get; set; }
         public string GymPlan { get; set; }
+        public decimal Weight { get; set; }
+        public decimal Height { get; set; }
         [Required]
         public bool? IsActive { get; set; }
         public DateTime Created { get; set; }

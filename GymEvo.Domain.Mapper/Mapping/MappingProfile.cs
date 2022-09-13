@@ -13,10 +13,10 @@ namespace GymEvo.Domain.Mapper.MappingProfile
     {
         public MappingProfile()
         {
-            CreateMap<Customer, CustomerDto>();
-            CreateMap<Instructor, InstructorDto>();
-            CreateMap<Class, ClassDto>();
-            CreateMap<Exercise, ExerciseDto>();
+            CreateMap<Customer, CustomerDto>().ReverseMap();
+            CreateMap<Instructor, InstructorDto>().ReverseMap();
+            CreateMap<Class, ClassDto>().ReverseMap();
+            CreateMap<Exercise, ExerciseDto>().ReverseMap();
             CreateMap<ClassExercise, ClassExerciseDto>();
             CreateMap<ClassCustomer, ClassCustomerDto>();
         }

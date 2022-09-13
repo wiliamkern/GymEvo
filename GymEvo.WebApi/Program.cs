@@ -18,12 +18,15 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddApplicationDependencyInjection();
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddDbContext<ServerContext>(options => {
     options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer"),
     opt => opt.MigrationsAssembly("GymEvo.WebApi"));
     });
+
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+#pragma warning disable CS8603 // Possible null reference return.
 builder.Services.AddScoped<IDbContext>(provider => provider.GetService<ServerContext>());
+#pragma warning restore CS8603 // Possible null reference return.
 builder.Services.AddAutoMapperDependency();
 
 var app = builder.Build();

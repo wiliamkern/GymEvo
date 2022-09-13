@@ -52,23 +52,16 @@ namespace GymEvo.Application.Exercises
 
             await _uow.Save();
 
-            return string.IsNullOrEmpty(result.ExerciseId.ToString());
+            return !string.IsNullOrEmpty(result.ExerciseId.ToString());
         }
 
         public async Task<bool> Update(ExerciseDto exerciseDto)
         {
-            var exercise = await _uow.ExerciseRepository
-                                            .Find(x => x.ExerciseId == exerciseDto.ExerciseId)
-                                            .FirstOrDefaultAsync();
-
-            if (exercise == null)
-                return false;
-
             var result = _uow.ExerciseRepository.Update(_mapper.Map<Exercise>(exerciseDto));
 
             await _uow.Save();
 
-            return string.IsNullOrEmpty(result.ExerciseId.ToString());
+            return !string.IsNullOrEmpty(result.ExerciseId.ToString());
         }
 
         public async Task<bool> Delete(int Id)
@@ -84,7 +77,7 @@ namespace GymEvo.Application.Exercises
 
             await _uow.Save();
 
-            return string.IsNullOrEmpty(result.Id.ToString());
+            return !string.IsNullOrEmpty(result.Id.ToString());
         }
     }
 }

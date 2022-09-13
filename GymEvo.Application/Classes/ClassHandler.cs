@@ -62,18 +62,11 @@ namespace GymEvo.Application.Classes
 
             await _uow.Save();
 
-            return string.IsNullOrEmpty(result.ClassId.ToString());
+            return !string.IsNullOrEmpty(result.ClassId.ToString());
         }
 
         public async Task<bool> Update(ClassDto classDto)
         {
-            var customer = await _uow.ClassRepository
-                                            .Find(x => x.ClassId == classDto.ClassId)
-                                            .FirstOrDefaultAsync();
-
-            if (customer == null)
-                return false;
-
             var result = _uow.ClassRepository.Update(_mapper.Map<Class>(classDto));
 
             _ = UpsertCustomersAsync(classDto);
@@ -81,7 +74,7 @@ namespace GymEvo.Application.Classes
 
             await _uow.Save();
 
-            return string.IsNullOrEmpty(result.ClassId.ToString());
+            return !string.IsNullOrEmpty(result.ClassId.ToString());
         }
 
         // Remove todos os alunos e reinsere eles de acordo com retorno do front
@@ -124,7 +117,7 @@ namespace GymEvo.Application.Classes
 
             await _uow.Save();
 
-            return string.IsNullOrEmpty(result.Id.ToString());
+            return !string.IsNullOrEmpty(result.Id.ToString());
         }
     }
 }

@@ -53,23 +53,16 @@ namespace GymEvo.Application.Customers
 
             await _uow.Save();
 
-            return string.IsNullOrEmpty(result.CustomerId.ToString());
+            return !string.IsNullOrEmpty(result.CustomerId.ToString());
         }
 
         public async Task<bool> Update(CustomerDto customerDto)
         {
-            var customer = await _uow.CustomerRepository
-                                            .Find(x => x.CustomerId == customerDto.CustomerId)
-                                            .FirstOrDefaultAsync();
-
-            if (customer == null)
-                return false;
-
             var result = _uow.CustomerRepository.Update(_mapper.Map<Customer>(customerDto));
 
             await _uow.Save();
 
-            return string.IsNullOrEmpty(result.CustomerId.ToString());
+            return !string.IsNullOrEmpty(result.CustomerId.ToString());
         }
 
         public async Task<bool> Delete(int Id)
@@ -85,7 +78,7 @@ namespace GymEvo.Application.Customers
 
             await _uow.Save();
 
-            return string.IsNullOrEmpty(result.Id.ToString());
+            return !string.IsNullOrEmpty(result.Id.ToString());
         }
     }
 }
